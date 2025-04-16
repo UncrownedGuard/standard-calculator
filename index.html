@@ -3,11 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Standard Calculator</title>
+  <title>Uncrowned Calculator</title>
   <style>
+    :root {
+      --primary: #0b5394;
+      --accent: #3d85c6;
+      --text-light: #dae6f3;
+      --text-dark: #353c41;
+      --bg-dark: #1e1e1e;
+      --bg-box: #2c2c2c;
+    }
+
     body {
-      background-color: #1e1e1e;
-      color: #dae6f3;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       display: flex;
       justify-content: center;
@@ -18,24 +27,30 @@
 
     #calculator {
       width: 100%;
-      max-width: 360px;
-      background-color: #2c2c2c;
-      border: 1px solid #888;
+      max-width: 420px;
+      background-color: var(--bg-box);
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      border: 1px solid var(--primary);
+    }
+
+    h3 {
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     input[type="text"] {
-      width: 100%;
-      padding: 10px;
+      width: 95%;
+      padding: 12px;
       margin-bottom: 15px;
       font-size: 2em;
       text-align: right;
       border-radius: 5px;
-      border: 1px solid #0b5394;
-      background-color: #353c41;
-      color: #dae6f3;
+      border: 1px solid var(--primary);
+      background-color: var(--text-dark);
+      color: var(--text-light);
     }
 
     .button-row {
@@ -47,68 +62,68 @@
     button {
       flex: 1;
       margin: 3px;
-      padding: 12px 0;
+      padding: 14px 0;
       font-size: 1.2em;
       border-radius: 5px;
-      border: 1px solid #aaa;
-      background-color: #444;
+      border: 1px solid var(--accent);
+      background-color: var(--primary);
       color: white;
       cursor: pointer;
       transition: background-color 0.2s ease;
     }
 
-    button.operator {
-      background-color: #f0a33e;
-      color: white;
-    }
-
     button:hover {
-      background-color: #555;
-    }
-
-    button.operator:hover {
-      background-color: #e88c25;
+      background-color: var(--accent);
+      color: var(--text-dark);
     }
 
     .clear-button {
       width: 100%;
       margin-top: 10px;
-      padding: 12px 0;
+      padding: 14px 0;
+      background-color: #c0392b;
+      border-color: #e74c3c;
+    }
+
+    .clear-button:hover {
+      background-color: #e74c3c;
+      color: white;
     }
 
     @media (prefers-color-scheme: light) {
       body {
         background-color: #ffffff;
-        color: #353c41;
+        color: var(--text-dark);
       }
 
       #calculator {
         background-color: #f9f9f9;
-        border-color: #ccc;
+        border-color: var(--accent);
       }
 
       input[type="text"] {
         background-color: #ffffff;
-        color: #000;
-        border: 1px solid #3d85c6;
+        color: var(--text-dark);
+        border: 1px solid var(--accent);
       }
 
       button {
-        background-color: #e0e0e0;
-        color: #000;
+        background-color: var(--primary);
+        color: #ffffff;
       }
 
       button:hover {
-        background-color: #d0d0d0;
+        background-color: var(--accent);
+        color: var(--text-dark);
       }
 
-      button.operator {
-        background-color: #f0a33e;
-        color: white;
+      .clear-button {
+        background-color: #c0392b;
+        border-color: #e74c3c;
       }
 
-      button.operator:hover {
-        background-color: #e88c25;
+      .clear-button:hover {
+        background-color: #e74c3c;
       }
     }
   </style>
@@ -116,31 +131,32 @@
 <body>
 
   <div id="calculator">
+    <h3>Standard Calculator</h3>
     <input type="text" id="display" readonly />
 
     <div class="button-row">
       <button onclick="appendToDisplay('7')">7</button>
       <button onclick="appendToDisplay('8')">8</button>
       <button onclick="appendToDisplay('9')">9</button>
-      <button class="operator" onclick="appendToDisplay('/')">÷</button>
+      <button onclick="appendToDisplay('/')">÷</button>
     </div>
     <div class="button-row">
       <button onclick="appendToDisplay('4')">4</button>
       <button onclick="appendToDisplay('5')">5</button>
       <button onclick="appendToDisplay('6')">6</button>
-      <button class="operator" onclick="appendToDisplay('*')">×</button>
+      <button onclick="appendToDisplay('*')">×</button>
     </div>
     <div class="button-row">
       <button onclick="appendToDisplay('1')">1</button>
       <button onclick="appendToDisplay('2')">2</button>
       <button onclick="appendToDisplay('3')">3</button>
-      <button class="operator" onclick="appendToDisplay('-')">−</button>
+      <button onclick="appendToDisplay('-')">−</button>
     </div>
     <div class="button-row">
       <button onclick="appendToDisplay('0')">0</button>
       <button onclick="appendToDisplay('.')">.</button>
       <button onclick="calculateResult()">=</button>
-      <button class="operator" onclick="appendToDisplay('+')">+</button>
+      <button onclick="appendToDisplay('+')">+</button>
     </div>
     <button class="clear-button" onclick="clearDisplay()">C</button>
   </div>
