@@ -12,6 +12,13 @@
       --text-dark: #353c41;
       --bg-dark: #1e1e1e;
       --bg-box: #2c2c2c;
+
+      --number-bg: #3d85c6;
+      --number-hover: #589ed3;
+      --operator-bg: #0b5394;
+      --operator-hover: #1a69c4;
+      --clear-bg: #c0392b;
+      --clear-hover: #e74c3c;
     }
 
     body {
@@ -42,7 +49,7 @@
     }
 
     input[type="text"] {
-      width: 95%;
+      width: 100%;
       padding: 12px;
       margin-bottom: 15px;
       font-size: 2em;
@@ -65,29 +72,44 @@
       padding: 14px 0;
       font-size: 1.2em;
       border-radius: 5px;
-      border: 1px solid var(--accent);
-      background-color: var(--primary);
-      color: white;
+      border: 1px solid #999;
       cursor: pointer;
       transition: background-color 0.2s ease;
     }
 
-    button:hover {
-      background-color: var(--accent);
-      color: var(--text-dark);
+    .btn-number {
+      background-color: var(--number-bg);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .btn-number:hover {
+      background-color: var(--number-hover);
+    }
+
+    .btn-operator {
+      background-color: var(--operator-bg);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .btn-operator:hover {
+      background-color: var(--operator-hover);
     }
 
     .clear-button {
       width: 100%;
       margin-top: 10px;
       padding: 14px 0;
-      background-color: #c0392b;
-      border-color: #e74c3c;
+      font-size: 1.2em;
+      border-radius: 5px;
+      border: 1px solid var(--clear-hover);
+      background-color: var(--clear-bg);
+      color: #fff;
     }
 
     .clear-button:hover {
-      background-color: #e74c3c;
-      color: white;
+      background-color: var(--clear-hover);
     }
 
     @media (prefers-color-scheme: light) {
@@ -107,23 +129,31 @@
         border: 1px solid var(--accent);
       }
 
-      button {
-        background-color: var(--primary);
-        color: #ffffff;
+      .btn-number {
+        background-color: var(--accent);
+        color: #000;
       }
 
-      button:hover {
-        background-color: var(--accent);
-        color: var(--text-dark);
+      .btn-number:hover {
+        background-color: #a5cce9;
+      }
+
+      .btn-operator {
+        background-color: var(--primary);
+        color: #fff;
+      }
+
+      .btn-operator:hover {
+        background-color: #1a69c4;
       }
 
       .clear-button {
-        background-color: #c0392b;
-        border-color: #e74c3c;
+        background-color: var(--clear-bg);
+        color: #fff;
       }
 
       .clear-button:hover {
-        background-color: #e74c3c;
+        background-color: var(--clear-hover);
       }
     }
   </style>
@@ -135,28 +165,28 @@
     <input type="text" id="display" readonly />
 
     <div class="button-row">
-      <button onclick="appendToDisplay('7')">7</button>
-      <button onclick="appendToDisplay('8')">8</button>
-      <button onclick="appendToDisplay('9')">9</button>
-      <button onclick="appendToDisplay('/')">÷</button>
+      <button class="btn-number" onclick="appendToDisplay('7')">7</button>
+      <button class="btn-number" onclick="appendToDisplay('8')">8</button>
+      <button class="btn-number" onclick="appendToDisplay('9')">9</button>
+      <button class="btn-operator" onclick="appendToDisplay('/')">÷</button>
     </div>
     <div class="button-row">
-      <button onclick="appendToDisplay('4')">4</button>
-      <button onclick="appendToDisplay('5')">5</button>
-      <button onclick="appendToDisplay('6')">6</button>
-      <button onclick="appendToDisplay('*')">×</button>
+      <button class="btn-number" onclick="appendToDisplay('4')">4</button>
+      <button class="btn-number" onclick="appendToDisplay('5')">5</button>
+      <button class="btn-number" onclick="appendToDisplay('6')">6</button>
+      <button class="btn-operator" onclick="appendToDisplay('*')">×</button>
     </div>
     <div class="button-row">
-      <button onclick="appendToDisplay('1')">1</button>
-      <button onclick="appendToDisplay('2')">2</button>
-      <button onclick="appendToDisplay('3')">3</button>
-      <button onclick="appendToDisplay('-')">−</button>
+      <button class="btn-number" onclick="appendToDisplay('1')">1</button>
+      <button class="btn-number" onclick="appendToDisplay('2')">2</button>
+      <button class="btn-number" onclick="appendToDisplay('3')">3</button>
+      <button class="btn-operator" onclick="appendToDisplay('-')">−</button>
     </div>
     <div class="button-row">
-      <button onclick="appendToDisplay('0')">0</button>
-      <button onclick="appendToDisplay('.')">.</button>
-      <button onclick="calculateResult()">=</button>
-      <button onclick="appendToDisplay('+')">+</button>
+      <button class="btn-number" onclick="appendToDisplay('0')">0</button>
+      <button class="btn-number" onclick="appendToDisplay('.')">.</button>
+      <button class="btn-operator" onclick="calculateResult()">=</button>
+      <button class="btn-operator" onclick="appendToDisplay('+')">+</button>
     </div>
     <button class="clear-button" onclick="clearDisplay()">C</button>
   </div>
